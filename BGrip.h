@@ -81,7 +81,7 @@ class BGRIPEXPORT BGrip
 {
 public:
 	BGrip(eGripperType gt);
-	~BGrip(void);
+	virtual ~BGrip(void);
 
 	/**
 	 * Get the type of hand.
