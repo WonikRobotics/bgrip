@@ -56,6 +56,7 @@ BGrip::BGrip(eGripperType gt)
 	memset(_J, 0, sizeof(_J));
 	
 	memset(_G, 0, sizeof(_G));
+	_grav_comp_enabled = false;
 
 	memset(_f_des, 0, sizeof(_f_des));
 
@@ -105,6 +106,12 @@ void BGrip::SetMotionType(int motionType)
 	_motionType = (eMotionType)motionType;
 	SetGains(motionType);
 }
+
+void BGrip::EnableGravCompensation(bool on)
+{
+	_grav_comp_enabled = on;
+}
+
 
 void BGrip::SetOpenSize(double openSize)
 {
@@ -244,10 +251,20 @@ void BGrip::UpdateControl(double time)
 		
 		///////////////////////////////////////////
 		// gravity
-		t_Gravity[i][0] = _G[i][0];
-		t_Gravity[i][1] = _G[i][1];
-		t_Gravity[i][2] = _G[i][2];
-		t_Gravity[i][3] = _G[i][3];
+		if (_grav_comp_enabled)
+		{
+			t_Gravity[i][0] = _G[i][0];
+			t_Gravity[i][1] = _G[i][1];
+			t_Gravity[i][2] = _G[i][2];
+			t_Gravity[i][3] = _G[i][3];
+		}
+		else
+		{
+			t_Gravity[i][0] = 0;
+			t_Gravity[i][1] = 0;
+			t_Gravity[i][2] = 0;
+			t_Gravity[i][3] = 0;
+		}
 
 		///////////////////////////////////////////
 		// total

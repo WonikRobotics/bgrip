@@ -119,6 +119,12 @@ public:
 	void SetMotionType(int motionType);
 
 	/**
+	 * Enable or disable gravity compensation.
+	 * @param on enable(true) or not(false).
+	 */
+	void EnableGravCompensation(bool on);
+
+	/**
 	* Set gripper open size.
 	* @param openSize how wide gripper tips are open. (0~100)
 	*/
@@ -261,6 +267,7 @@ protected:
 	double _J[NOF][3][NOJ];				///< Jacobian
 
 	double _G[NOF][NOJ];				///< gravitational vector
+	bool _grav_comp_enabled;			///< enabled of disabled of gravity compensation
 
 	double _f_des[NOF];					///< desired force
 

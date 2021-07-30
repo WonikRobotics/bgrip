@@ -6,25 +6,25 @@
 BGrip9DOF::BGrip9DOF()
 	: BGrip(eGripperType_9DOF)
 {
-	_mass[0][0] = 0.0;
-	_mass[0][1] = 0.16;
-	_mass[0][2] = 0.16;
-	_mass[1][0] = 0.0;
-	_mass[1][1] = 0.16;
-	_mass[1][2] = 0.16;
-	_mass[2][0] = 0.0;
-	_mass[2][1] = 0.16;
-	_mass[2][2] = 0.16;
+	_mass[FI_I][0] = 0.007;
+	_mass[FI_I][1] = 0.061;
+	_mass[FI_I][2] = 0.036;
+	_mass[FI_M][0] = 0.007;
+	_mass[FI_M][1] = 0.061;
+	_mass[FI_M][2] = 0.036;
+	_mass[FI_T][0] = 0.007;
+	_mass[FI_T][1] = 0.061;
+	_mass[FI_T][2] = 0.036;
 
-	_link[0][0] = 0.01;
-	_link[0][1] = 0.054;
-	_link[0][2] = 0.068;
-	_link[1][0] = 0.01;
-	_link[1][1] = 0.054;
-	_link[1][2] = 0.068;
-	_link[2][0] = 0.01;
-	_link[2][1] = 0.054;
-	_link[2][2] = 0.068;
+	_link[FI_I][0] = 0.0;
+	_link[FI_I][1] = 0.054;
+	_link[FI_I][2] = 0.068;
+	_link[FI_M][0] = 0.0;
+	_link[FI_M][1] = 0.054;
+	_link[FI_M][2] = 0.068;
+	_link[FI_T][0] = 0.0;
+	_link[FI_T][1] = 0.054;
+	_link[FI_T][2] = 0.068;
 
 	_baseX = 0.03;
 	_baseY = 0.035;
@@ -39,39 +39,39 @@ void BGrip9DOF::SetGains(int motionType)
 	switch (motionType)
 	{
 	case eMotionType_READY:
-		_kp[0][0] = _kp[1][0] = _kp[2][0] = 500; //500 40
-		_kp[0][1] = _kp[1][1] = _kp[2][1] = 800;
-		_kp[0][2] = _kp[1][2] = _kp[2][2] = 500;
-		_kp[0][3] = _kp[1][3] = _kp[2][3] = 0;
-		_kd[0][0] = _kd[1][0] = _kd[2][0] = 25;   // this finger has really low friction at the first joint on BR014
-		_kd[0][1] = _kd[1][1] = _kd[2][1] = 50;   // make sure these values look good on all hands. likely change them 
-		_kd[0][2] = _kd[1][2] = _kd[2][2] = 40;   // the to match the ones below.
-		_kd[0][3] = _kd[1][3] = _kd[2][3] = 0;
+		_kp[FI_I][0] = _kp[FI_M][0] = _kp[FI_T][0] = 500;
+		_kp[FI_I][1] = _kp[FI_M][1] = _kp[FI_T][1] = 800;
+		_kp[FI_I][2] = _kp[FI_M][2] = _kp[FI_T][2] = 500;
+		_kp[FI_I][3] = _kp[FI_M][3] = _kp[FI_T][3] = 0;
+		_kd[FI_I][0] = _kd[FI_M][0] = _kd[FI_T][0] = 25;
+		_kd[FI_I][1] = _kd[FI_M][1] = _kd[FI_T][1] = 50;
+		_kd[FI_I][2] = _kd[FI_M][2] = _kd[FI_T][2] = 40;
+		_kd[FI_I][3] = _kd[FI_M][3] = _kd[FI_T][3] = 0;
 		break;
 
 	case eMotionType_GRASP:
 		break;
 
 	case eMotionType_JOINT_PD:
-		_kp[0][0] = _kp[1][0] = _kp[2][0] = 500; //500 40
-		_kp[0][1] = _kp[1][1] = _kp[2][1] = 800;
-		_kp[0][2] = _kp[1][2] = _kp[2][2] = 500;
-		_kp[0][3] = _kp[1][3] = _kp[2][3] = 0;
-		_kd[0][0] = _kd[1][0] = _kd[2][0] = 25;   // this finger has really low friction at the first joint on BR014
-		_kd[0][1] = _kd[1][1] = _kd[2][1] = 50;   // make sure these values look good on all hands. likely change them 
-		_kd[0][2] = _kd[1][2] = _kd[2][2] = 40;   // the to match the ones below.
-		_kd[0][3] = _kd[1][3] = _kd[2][3] = 0;
+		_kp[FI_I][0] = _kp[FI_M][0] = _kp[FI_T][0] = 500;
+		_kp[FI_I][1] = _kp[FI_M][1] = _kp[FI_T][1] = 800;
+		_kp[FI_I][2] = _kp[FI_M][2] = _kp[FI_T][2] = 500;
+		_kp[FI_I][3] = _kp[FI_M][3] = _kp[FI_T][3] = 0;
+		_kd[FI_I][0] = _kd[FI_M][0] = _kd[FI_T][0] = 25;
+		_kd[FI_I][1] = _kd[FI_M][1] = _kd[FI_T][1] = 50;
+		_kd[FI_I][2] = _kd[FI_M][2] = _kd[FI_T][2] = 40;
+		_kd[FI_I][3] = _kd[FI_M][3] = _kd[FI_T][3] = 0;
 		break;
 
 	case eMotionType_GRAVITY_COMP:
-		_kp[0][0] = _kp[1][0] = _kp[2][0] = 80; // was 120 orignially
-		_kp[0][1] = _kp[1][1] = _kp[2][1] = 90;
-		_kp[0][2] = _kp[1][2] = _kp[2][2] = 80;
-		_kp[0][3] = _kp[1][3] = _kp[2][3] = 0;
-		_kd[0][0] = _kd[1][0] = _kd[2][0] = sqrt(_kp[0][0])*0.004*1.0;
-		_kd[0][1] = _kd[1][1] = _kd[2][1] = sqrt(_kp[0][1])*0.004*2.0;
-		_kd[0][2] = _kd[1][2] = _kd[2][2] = sqrt(_kp[0][2])*0.004*1.0;
-		_kd[0][3] = _kd[1][3] = _kd[2][3] = 0;
+		_kp[FI_I][0] = _kp[FI_M][0] = _kp[FI_T][0] = 80;
+		_kp[FI_I][1] = _kp[FI_M][1] = _kp[FI_T][1] = 90;
+		_kp[FI_I][2] = _kp[FI_M][2] = _kp[FI_T][2] = 80;
+		_kp[FI_I][3] = _kp[FI_M][3] = _kp[FI_T][3] = 0;
+		_kd[FI_I][0] = _kd[FI_M][0] = _kd[FI_T][0] = sqrt(_kp[FI_I][0])*0.004*1.0;
+		_kd[FI_I][1] = _kd[FI_M][1] = _kd[FI_T][1] = sqrt(_kp[FI_I][1])*0.004*2.0;
+		_kd[FI_I][2] = _kd[FI_M][2] = _kd[FI_T][2] = sqrt(_kp[FI_I][2])*0.004*1.0;
+		_kd[FI_I][3] = _kd[FI_M][3] = _kd[FI_T][3] = 0;
 		break;
 
 	default:
@@ -82,6 +82,7 @@ void BGrip9DOF::SetGains(int motionType)
 
 void BGrip9DOF::SolveFK()
 {
+	// backup current solution for applying LPF later
 	for (int i = 0; i<NOF; i++)
 	{
 		_x_pre[i] = _x[i];
@@ -92,9 +93,7 @@ void BGrip9DOF::SolveFK()
 		_z_filtered_pre[i] = _z_filtered[i];
 	}
 
-
-	//The forward kinematics of each finger.
-	
+	// solve the forward kinematics of each finger.
 	_x[FI_I] =  _baseX - _link[FI_I][2] * (C0[FI_I] * C1[FI_I] * S2[FI_I] + C0[FI_I] * C2[FI_I] * S1[FI_I]) - _link[FI_I][1] * C0[FI_I] * S1[FI_I];
 	_y[FI_I] = -_baseY - _link[FI_I][2] * (C1[FI_I] * S0[FI_I] * S2[FI_I] + C2[FI_I] * S0[FI_I] * S1[FI_I]) - _link[FI_I][1] * S0[FI_I] * S1[FI_I];
 	_z[FI_I] = _link[FI_I][2] * (C1[FI_I] * C2[FI_I] - S1[FI_I] * S2[FI_I]) + _link[FI_I][1] * C1[FI_I];
@@ -107,8 +106,7 @@ void BGrip9DOF::SolveFK()
 	_y[FI_T] = _link[FI_T][2] *(C1[FI_T] * S0[FI_T] * S2[FI_T] + C2[FI_T] * S0[FI_T] * S1[FI_T]) + _link[FI_T][1] * S0[FI_T] * S1[FI_T];
 	_z[FI_T] = _link[FI_T][2] *(C1[FI_T] * C2[FI_T] - S1[FI_T] * S2[FI_T]) + _link[FI_T][1] * C1[FI_T];
 
-
-	
+	// apply LPF
 	for (int i = 0; i<NOF; i++)
 	{
 		_x_filtered[i] = (0.6f*_x_filtered[i]) + (0.198f*_x_pre[i]) + (0.198f*_x[i]);
@@ -145,7 +143,7 @@ void BGrip9DOF::CalculateJacobian()
 	_J[FI_I][2][1] = -_link[FI_I][2] *(C1[FI_I] * S2[FI_I] + C2[FI_I] * S1[FI_I]) - _link[FI_I][1] * S1[FI_I];
 	_J[FI_I][2][2] = -_link[FI_I][2] *(C1[FI_I] * S2[FI_I] + C2[FI_I] * S1[FI_I]);
 
-	// middle Finger
+	// middle finger
 	_J[FI_M][0][0] =  _link[FI_M][2] *(C1[FI_M] * S0[FI_M] * S2[FI_M] + C2[FI_M] * S0[FI_M] * S1[FI_M]) + _link[FI_M][1] * S0[FI_M] * S1[FI_M];
 	_J[FI_M][0][1] = -_link[FI_M][2] *(C0[FI_M] * C1[FI_M] * C2[FI_M] - C0[FI_M] * S1[FI_M] * S2[FI_M]) - _link[FI_M][1] * C0[FI_M] * C1[FI_M];
 	_J[FI_M][0][2] = -_link[FI_M][2] *(C0[FI_M] * C1[FI_M] * C2[FI_M] - C0[FI_M] * S1[FI_M] * S2[FI_M]);
@@ -174,8 +172,7 @@ void BGrip9DOF::CalculateJacobian()
 
 void BGrip9DOF::CalculateGravity()
 {
-	//double _G[NOF][NOJ];
-	double g_ = 9.81;
+	static double g_ = 9.81;
 
 	for (int fi = 0; fi < NOF; fi++)
 	{
@@ -312,11 +309,6 @@ void BGrip9DOF::Motion_GravityComp()
 
 void BGrip9DOF::Motion_Grasp()
 {
-	double t_TaskDamping[NOF][NOJ];
-	double t_Position[NOF][NOJ];
-	double t_Pinching[NOF][NOJ];
-	double t_Position_Object[NOF][NOJ];
-
 	double KT[3];
 	double Cg[3];
 	double Cgd[3];
@@ -324,25 +316,9 @@ void BGrip9DOF::Motion_Grasp()
 	double F[NOF], Fx[NOF], Fy[NOF], Fz[NOF], Fdx[NOF], Fdy[NOF], Fdz[NOF];
 	double ag[3];
 
-	/*double IndexCg[3];
-	double MiddleCg[3];
-	double PegCg[3];
-	double F1[3], F2[3], F3[3];
-	double Fd1[3], Fd2[3], Fd3[3];
-	double Index_F1[3];
-	double Middle_F1[3];
-	double Peg_F1[3];*/
-
-	int i, j;
-
 	KT[0] = 200;
 	KT[1] = 200;
 	KT[2] = 200;
-
-
-	
-
-
 
 	switch (_graspMode)
 	{
@@ -656,93 +632,6 @@ void BGrip9DOF::Motion_Grasp()
 	default:
 		break;
 	}
-
-
-
-
-
-
-	/*
-
-
-	float e_x[4];
-	float e_y[4];
-	float e_z[4];
-
-	float e_x_object;
-	float e_y_object;
-	float e_z_object;
-
-	float xc_object;
-	float yc_object;
-	float zc_object;
-
-	//float x_d_object;
-	//float y_d_object;
-	//float z_d_object;
-
-
-	// center coord of an object graspped
-	xc_object = (_x[0] + _x[1] + _x[3]) / 3;
-	yc_object = (_y[0] + _y[1] + _y[3]) / 3;
-	zc_object = (_z[0] + _z[1] + _z[3]) / 3;
-
-	x_d_object = 0.0f;
-	y_d_object = 0.0f; // 10.0f*sinf(5*_curT);
-	z_d_object = 0.0f;
-
-	////printf("Disp. x: %f\t y: %f\t z: %f\t\n", x_d_object, y_d_object, z_d_object);
-
-	e_x_object = x_d_object - xc_object;
-	e_y_object = y_d_object - yc_object;
-	e_z_object = z_d_object - zc_object;
-
-	////printf("Obj. x: %f\t y: %f\t z: %f\t\n\n", e_x_object, e_y_object, e_z_object);
-
-	for (int i = 0; i < NOF; i++)
-	{
-		e_x[i] = (_x_des[i] - _x[i]);
-		e_y[i] = (_y_des[i] - _y[i]);
-		e_z[i] = (_z_des[i] - _z[i]);
-
-		//printf("e_xyz:\t%f \t %f \t %f\n", e_x[i],e_y[i],e_z[i]);
-
-		///////////////////////////////////////////
-		// task damping
-		t_TaskDamping[i][0] = 0;
-		t_TaskDamping[i][1] = 0;
-		t_TaskDamping[i][2] = 0;
-		t_TaskDamping[i][3] = 0;
-
-		///////////////////////////////////////////
-		// task position
-		t_Position[i][0] = (_J[i][0][0] * _kp[i][0] * (e_x[i]) + _J[i][1][0] * _kp[i][0] * (e_y[i]) + _J[i][2][0] * _kp[i][0] * (e_z[i]));
-		t_Position[i][1] = (_J[i][0][1] * _kp[i][1] * (e_x[i]) + _J[i][1][1] * _kp[i][1] * (e_y[i]) + _J[i][2][1] * _kp[i][1] * (e_z[i]));
-		t_Position[i][2] = (_J[i][0][2] * _kp[i][2] * (e_x[i]) + _J[i][1][2] * _kp[i][2] * (e_y[i]) + _J[i][2][2] * _kp[i][2] * (e_z[i]));
-		t_Position[i][3] = (_J[i][0][3] * _kp[i][3] * (e_x[i]) + _J[i][1][3] * _kp[i][3] * (e_y[i]) + _J[i][2][3] * _kp[i][3] * (e_z[i]));
-
-		///////////////////////////////////////////
-		// desired pinching force
-		t_Pinching[i][0] = (_J[i][0][0] * _f_des[i] * (e_x[i]) + _J[i][1][0] * _f_des[i] * (e_y[i]) + _J[i][2][0] * _f_des[i] * (e_z[i]));
-		t_Pinching[i][1] = (_J[i][0][1] * _f_des[i] * (e_x[i]) + _J[i][1][1] * _f_des[i] * (e_y[i]) + _J[i][2][1] * _f_des[i] * (e_z[i]));
-		t_Pinching[i][2] = (_J[i][0][2] * _f_des[i] * (e_x[i]) + _J[i][1][2] * _f_des[i] * (e_y[i]) + _J[i][2][2] * _f_des[i] * (e_z[i]));
-		t_Pinching[i][3] = (_J[i][0][3] * _f_des[i] * (e_x[i]) + _J[i][1][3] * _f_des[i] * (e_y[i]) + _J[i][2][3] * _f_des[i] * (e_z[i]));
-
-		///////////////////////////////////////////
-		// object position
-		t_Position_Object[i][0] = (_J[i][0][0] * _kp_task[i][0] * (e_x_object)+_J[i][1][0] * _kp_task[i][0] * (e_y_object)+_J[i][2][0] * _kp_task[i][0] * (e_z_object));
-		t_Position_Object[i][1] = (_J[i][0][1] * _kp_task[i][1] * (e_x_object)+_J[i][1][1] * _kp_task[i][1] * (e_y_object)+_J[i][2][1] * _kp_task[i][1] * (e_z_object));
-		t_Position_Object[i][2] = (_J[i][0][2] * _kp_task[i][2] * (e_x_object)+_J[i][1][2] * _kp_task[i][2] * (e_y_object)+_J[i][2][2] * _kp_task[i][2] * (e_z_object));
-		t_Position_Object[i][3] = (_J[i][0][3] * _kp_task[i][3] * (e_x_object)+_J[i][1][3] * _kp_task[i][3] * (e_y_object)+_J[i][2][3] * _kp_task[i][3] * (e_z_object));
-	
-		///////////////////////////////////////////
-		// calculated torque
-		_tau_task[i][0] = ((t_Position[i][0] + t_Pinching[i][0] + t_Position_Object[i][0] - t_TaskDamping[i][0])*(1));
-		_tau_task[i][1] = ((t_Position[i][1] + t_Pinching[i][1] + t_Position_Object[i][1] - t_TaskDamping[i][1])*(1));
-		_tau_task[i][2] = ((t_Position[i][2] + t_Pinching[i][2] + t_Position_Object[i][2] - t_TaskDamping[i][2])*(1));
-		_tau_task[i][3] = ((t_Position[i][3] + t_Pinching[i][3] + t_Position_Object[i][3] - t_TaskDamping[i][3])*(1));
-	}
-	*/
 }
 
 void BGrip9DOF::Motion_JointPD()

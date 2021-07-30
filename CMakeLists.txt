@@ -20,7 +20,7 @@ set (BGrip_VERSION_MINOR 0)
 include_directories ("${PROJECT_BINARY_DIR}")
 
 # add definitions
-add_definitions (-DUNICODE -D_UNICODE)
+add_definitions (-DUNICODE -D_UNICODE -DBGRIP_EXPORTS)
 
 # add RoboticsLab common header files
 include_directories (/usr/local/include)
